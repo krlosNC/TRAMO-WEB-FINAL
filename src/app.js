@@ -2,7 +2,8 @@
 import express from 'express';
 import { fileURLToPath } from 'url';
 import path from 'path';
-import { inicioPagina, loginPagina, adminRegistro, createAdmin, auteticaAdmin, controlerAdmin, cerraSesion, limpiarCache } from './controllers/login.controllers.js'
+import adminRoutes from './routes/login.routes.js'
+
 
 const app = express();
 
@@ -31,27 +32,7 @@ app.use(session({
 }));
 
 /*=========================================*/
-
-// establecemos las rutas
-app.get('/', inicioPagina)
-
-app.get('/login', loginPagina)
-
-app.get('/register', adminRegistro)
-
-// Método para la REGISTRACIÓN
-app.post('/register', createAdmin)
-
-// Metodo para la autenticacion
-app.post('/auth', auteticaAdmin);
-
-// Método para controlar que está auth en todas las páginas
-app.get('/admin', controlerAdmin);
-
-// Destruye la sesión.
-app.get('/logout', cerraSesion);
-
-// Para limpiar la caché luego de destruir sesión
-app.use(limpiarCache);
+// PAGINA PRINCIPAL Y LOGIN EN MODO ADMINISTRADOR
+app.use(adminRoutes)
 
 export default app;
