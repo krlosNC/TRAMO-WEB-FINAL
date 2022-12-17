@@ -1,0 +1,66 @@
+.gradient-custom-2 {
+  /* fallback for old browsers */
+  background: url("https://w0.peakpx.com/wallpaper/930/411/HD-wallpaper-road-usa-winter.jpg");
+  background-size: cover;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(
+    to
+      url("https://w0.peakpx.com/wallpaper/930/411/HD-wallpaper-road-usa-winter.jpg")
+  );
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: url("https://w0.peakpx.com/wallpaper/930/411/HD-wallpaper-road-usa-winter.jpg");
+  background-size: cover;
+}
+
+.gradient-custom {
+  /* fallback for old browsers */
+  background: url("https://web-dev.imgix.net/image/admin/ltK4SNRultTnkbimOySm.jpg?auto=format");
+  background-size: cover;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(
+    to
+      url("https://web-dev.imgix.net/image/admin/ltK4SNRultTnkbimOySm.jpg?auto=format")
+  );
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: url("https://web-dev.imgix.net/image/admin/ltK4SNRultTnkbimOySm.jpg?auto=format");
+  background-size: cover;
+}
+
+.gradient-custom-button {
+  /* fallback for old browsers */
+  background: #2500F9;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(
+    to right,
+    #2500F9,
+    #2500F9,
+    #2500F9,
+    #2500F9
+  );
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, #2500F9, #2500F9, #2500F9, #2500F9);
+}
+
+@media (max-width: 768px) {
+  #contenedor_2{
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .gradient-form {
+    height: 100vh !important;
+  }
+}
+@media (min-width: 769px) {
+  .gradient-custom-2 {
+    border-top-right-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
+  }
+}

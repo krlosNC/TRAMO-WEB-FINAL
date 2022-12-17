@@ -1,0 +1,61 @@
+/*** Team ***/
+.team-item {
+    background-color: white;
+    -webkit-box-shadow: 3px 1px 70px -21px rgba(0, 0, 0, 0.95);
+    -moz-box-shadow: 3px 1px 70px -21px rgba(0, 0, 0, 0.95);
+    box-shadow: 3px 1px 70px -21px rgba(0, 0, 0, 0.95);
+
+    height: calc(100% - 40px);
+    transition: .5s;
+}
+
+.team-item img {
+    transition: .5s;
+}
+
+.team-item:hover img {
+    transform: scale(1.1);
+}
+
+.team-item:hover {
+    height: 100%;
+}
+
+.team-item .btn {
+    border-radius: 38px 38px 0 0;
+}
+
+.integrantes {
+    height: 700px auto;
+}
+
+
+.cars:hover {
+    box-shadow: none;
+    scale: 1.1;
+    transition: .2s;
+}
+
+@media (max-width: 992px) {
+    .integrantes {
+        height: 1200px;
+    }
+
+    .team-item {
+        box-shadow: 0 0 45px rgba(0, 0, 0, .08);
+        height: calc(100% - 38px);
+        transition: .5s;
+    }
+}
+
+@media (max-width: 716px) {
+    .integrantes {
+        height: 2600px;
+    }
+}
+
+.cars:hover {
+    scale: 1.1;
+    transition: .5s;
+    box-shadow: none;
+}

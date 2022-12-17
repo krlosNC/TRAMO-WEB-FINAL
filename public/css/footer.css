@@ -1,0 +1,118 @@
+i {
+    font-size: 2rem;
+}
+
+.footer {
+    padding: 3rem 0rem 1rem;
+    background-color: #161627;
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+.footer__container {
+    max-width: 116rem;
+    margin: auto;
+    padding: 0 1.5rem;
+}
+
+.footer__title {
+    font-size: 1.5rem;
+    color: #e79d27;
+    font-weight: 500;
+    margin-bottom: 2rem;
+}
+
+.footer__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0;
+}
+
+.footer__list-item {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.footer__list-link {
+    text-decoration: none;
+    color: inherit;
+    transition: color .25s;
+}
+
+.footer__list-link:hover {
+    color: #e7d127;
+    text-decoration: none;
+}
+
+.newsletter__form {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.newsletter__form-input {
+    max-width: 300px;
+    height: 40px;
+    border: none;
+    padding-left: .7rem;
+    outline: none;
+    border-radius: 20px;
+}
+
+.newsletter__form-btn {
+    cursor: pointer;
+    border: none;
+    border-radius: 50%;
+    color: 151823;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: -40px;
+    transition: background-color .25s, color .25s;
+    background-color: #ffd000;
+}
+
+.newsletter .footer__list {
+    flex-direction: row;
+}
+
+.footer__divider {
+    margin: 1.5rem 0rem 1rem;
+    border: none;
+    border-top: 1px solid rgba(252, 255, 255, .1);
+}
+
+.footer__bottom {
+    display: flex;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+
+.footer__bottom .footer__list {
+    flex-direction: row;
+}
+.footer__list img:hover{
+   filter: invert(10%) sepia(62%) saturate(2406%) hue-rotate(335deg) brightness(92%) contrast(88%);
+    
+}
+
+.eslogan-footeer{
+    background-color: #292c3f;
+    border-radius: 30px;
+    padding: 20px;
+    max-width:300px;
+}
+
+.img_descarga{
+    border-radius: 30px;
+    box-shadow: 11px 22px 21px -6px rgba(242,200,14,0.47);
+}
+
+
+/* Container olas */
+
+
+
