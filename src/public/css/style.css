@@ -18,7 +18,6 @@
   /* fallback for old browsers */
   background: url("https://web-dev.imgix.net/image/admin/ltK4SNRultTnkbimOySm.jpg?auto=format");
   background-size: cover;
-
   /* Chrome 10-25, Safari 5.1-6 */
   background: -webkit-linear-gradient(
     to

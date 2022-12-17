@@ -1,55 +1,25 @@
-// Invocamos a Express
-import express from 'express';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-
-const app = express();
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-//Para poder capturar los datos del formulario (sin urlencoded nos devuelve "undefined")
-app.use(express.urlencoded({extended:false}));
-app.use(express.json());//además le decimos a express que vamos a usar json
-
-//seteamos el directorio de assets
-app.use('/resources',express.static('public'));
-app.use('/resources', express.static(__dirname + '/public'));
-
-//Establecemos el motor de plantillas
-app.set('view engine','ejs');
-
 //Invocamos a bcrypt
 import bcryptjs from 'bcryptjs';
-
-//variables de session
-import session from 'express-session';
-app.use(session({
-	secret: 'secret',
-	resave: true,
-	saveUninitialized: true
-}));
-
-
 // Invocamos a la conexion de la DB
-import connection from './db.js';
+import connection from '../db.js';
 
-// establecemos las rutas
+// Pagina principal de aterrizaje
+export const inicioPagina = (req, res)=>{
+    res.render('index')
+}
 
-	app.get('/', (req, res)=>{
-		res.render('index')
-	})
+// Pagina login
+export const loginPagina = (req, res)=>{
+    res.render('login');
+}
 
-	app.get('/login',(req, res)=>{
-		res.render('login');
-	})
+// Por si quiero rendirazar donde registrar un administrador
+export const adminRegistro = (req, res)=>{
+    res.render('register');
+}
 
-	app.get('/register',(req, res)=>{
-		res.render('register');
-	})
-
-// Método para la REGISTRACIÓN
-app.post('/register', async (req, res)=>{
+// Por si quiero registrar un nuevo administrador
+export const createAdmin = async (req, res)=>{
 	const email = req.body.email;
     const name = req.body.name;
     const password = req.body.password;
@@ -62,10 +32,10 @@ app.post('/register', async (req, res)=>{
             console.log("Si se ingreso el dato")
         }
     })
-})
+}
 
-// Metodo para la autenticacion
-app.post('/auth', async (req, res)=> {
+// Autenticación de login admin
+export const auteticaAdmin = async (req, res)=> {
 	const adminMail = req.body.mailAdmin;
     const adminContra = req.body.passwordAdmin;
 
@@ -108,10 +78,10 @@ app.post('/auth', async (req, res)=> {
             ruta: 'login'
          })
     }
-});
+}
 
-// Método para controlar que está auth en todas las páginas
-app.get('/admin', (req, res)=> {
+// Controlar que está auth en todas las páginas
+export const controlerAdmin = (req, res)=> {
 	if(req.session.loggedin){
         res.render('admin', {
             login: true,
@@ -123,16 +93,19 @@ app.get('/admin', (req, res)=> {
             name: 'Debe iniciar sesión'
         })
     }
-});
+}
 
-// Destruye la sesión.
-app.get('/logout', function (req, res) {
+// Cerra sesión administrador
+export const cerraSesion = (req, res)=> {
 	req.session.destroy(()=>{
         res.redirect('/')
     })
-});
+}
 
+// Para limpiar la caché luego de destruir sesión
 
-app.listen(3000, (req, res)=>{
-    console.log('SERVIDOR CORRIENDO EN http://localhost:3000');
-});
+export const limpiarCache = (req, res, next)=> {
+    if (!req.user)
+        res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+    next();
+}
