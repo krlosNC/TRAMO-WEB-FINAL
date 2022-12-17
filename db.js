@@ -1,5 +1,8 @@
-//2 - Invocamos a MySQL y realizamos la conexion
-const mysql = require('mysql2');
+import mysql from 'mysql2';
+import dotenv from 'dotenv';
+
+dotenv.config({ path: './env/.env'});
+
 const connection = mysql.createConnection({
     //Con variables de entorno
     host     : process.env.DB_HOST,
@@ -16,4 +19,4 @@ connection.connect((error)=>{
     console.log('¡Conectado a la Base de Datos!');
   });
 
-  module.exports = connection;
+export default connection

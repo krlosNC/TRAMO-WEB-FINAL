@@ -1,27 +1,29 @@
-// 1 - Invocamos a Express
-const express = require('express');
+// Invocamos a Express
+import express from 'express';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
 const app = express();
 
-//2 - Para poder capturar los datos del formulario (sin urlencoded nos devuelve "undefined")
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+//Para poder capturar los datos del formulario (sin urlencoded nos devuelve "undefined")
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());//además le decimos a express que vamos a usar json
 
-//3- Invocamos a dotenv
-const dotenv = require('dotenv');
-dotenv.config({ path: './env/.env'});
-
-//4 -seteamos el directorio de assets
+//seteamos el directorio de assets
 app.use('/resources',express.static('public'));
 app.use('/resources', express.static(__dirname + '/public'));
 
-//5 - Establecemos el motor de plantillas
+//Establecemos el motor de plantillas
 app.set('view engine','ejs');
 
-//6 -Invocamos a bcrypt
-const bcryptjs = require('bcryptjs');
+//Invocamos a bcrypt
+import bcryptjs from 'bcryptjs';
 
-//7- variables de session
-const session = require('express-session');
+//variables de session
+import session from 'express-session';
 app.use(session({
 	secret: 'secret',
 	resave: true,
@@ -29,10 +31,10 @@ app.use(session({
 }));
 
 
-// 8 - Invocamos a la conexion de la DB
-const connection = require('./database/db');
+// Invocamos a la conexion de la DB
+import connection from './db.js';
 
-//9 - establecemos las rutas
+// establecemos las rutas
 
 	app.get('/', (req, res)=>{
 		res.render('index')
@@ -46,7 +48,7 @@ const connection = require('./database/db');
 		res.render('register');
 	})
 
-//10 - Método para la REGISTRACIÓN
+// Método para la REGISTRACIÓN
 app.post('/register', async (req, res)=>{
 	const email = req.body.email;
     const name = req.body.name;
@@ -62,7 +64,7 @@ app.post('/register', async (req, res)=>{
     })
 })
 
-//11 - Metodo para la autenticacion
+// Metodo para la autenticacion
 app.post('/auth', async (req, res)=> {
 	const adminMail = req.body.mailAdmin;
     const adminContra = req.body.passwordAdmin;
@@ -108,7 +110,7 @@ app.post('/auth', async (req, res)=> {
     }
 });
 
-//12 - Método para controlar que está auth en todas las páginas
+// Método para controlar que está auth en todas las páginas
 app.get('/admin', (req, res)=> {
 	if(req.session.loggedin){
         res.render('admin', {
@@ -123,7 +125,7 @@ app.get('/admin', (req, res)=> {
     }
 });
 
-//Destruye la sesión.
+// Destruye la sesión.
 app.get('/logout', function (req, res) {
 	req.session.destroy(()=>{
         res.redirect('/')

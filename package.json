@@ -1,8 +1,9 @@
 {
-  "name": "loging-final",
+  "name": "TRAMO",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "TRAMO S.A.S TRANSPORTE DE CARGA INTERMUNICIPAL",
+  "main": "app.js",
+  "type": "module",
   "scripts": {
     "dev": "nodemon app.js",
     "start": "app.js"
