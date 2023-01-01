@@ -3,21 +3,6 @@ import bcryptjs from 'bcryptjs';
 // Invocamos a la conexion de la DB
 import connection from '../db.js';
 
-// Pagina principal de aterrizaje
-export const inicioPagina = (req, res)=>{
-    res.render('index')
-}
-
-// Pagina login
-export const loginPagina = (req, res)=>{
-    res.render('login');
-}
-
-// Por si quiero rendirazar donde registrar un administrador
-export const adminRegistro = (req, res)=>{
-    res.render('register');
-}
-
 // Por si quiero registrar un nuevo administrador
 export const createAdmin = async (req, res)=>{
 	const email = req.body.email;
@@ -56,6 +41,7 @@ export const auteticaAdmin = async (req, res)=> {
             }else{
                 req.session.loggedin = true;
                 req.session.name = results[0].name;
+                req.session.email = results[0].email;
                 res.render('login', {
                     alert: true,
                     alertTitle: "Bienvenido administrador TRAMO",
@@ -80,7 +66,8 @@ export const auteticaAdmin = async (req, res)=> {
     }
 }
 
-// Controlar que está auth en todas las páginas
+// CONTROLAR QUE EL AUTH ESTE EN TODAS LAS VISTAS DEL MODULO ADMINISTRADOR
+
 export const controlerAdmin = (req, res)=> {
 	if(req.session.loggedin){
         res.render('admin', {
@@ -88,14 +75,105 @@ export const controlerAdmin = (req, res)=> {
             name: req.session.name
         });
     }else{
-        res.render('admin', {
-            login: false,
-            name: 'Debe iniciar sesión'
+        res.render('404', {
+            login: false
         })
     }
 }
 
-// Cerra sesión administrador
+export const controlerSoli = (req, res)=> {
+	if(req.session.loggedin){
+        res.render('solicitudes-con', {
+            login: true,
+            name: req.session.name
+        });
+    }else{
+        res.render('404', {
+            login: false
+        })
+    }
+}
+
+export const controlerDatosCon = (req, res)=> {
+	if(req.session.loggedin){
+        res.render('datos-con', {
+            login: true,
+            name: req.session.name
+        });
+    }else{
+        res.render('404', {
+            login: false
+        })
+    }
+}
+
+export const controlerDatosClien = (req, res)=> {
+	if(req.session.loggedin){
+        res.render('datos-clien', {
+            login: true,
+            name: req.session.name
+        });
+    }else{
+        res.render('404', {
+            login: false
+        })
+    }
+}
+
+export const controlerHistorial = (req, res)=> {
+	if(req.session.loggedin){
+        res.render('historial', {
+            login: true,
+            name: req.session.name
+        });
+    }else{
+        res.render('404', {
+            login: false
+        })
+    }
+}
+
+export const controlerPqrs = (req, res)=> {
+	if(req.session.loggedin){
+        res.render('p-q-r-s', {
+            login: true,
+            name: req.session.name
+        });
+    }else{
+        res.render('404', {
+            login: false
+        })
+    }
+}
+
+export const controlerPerfil = (req, res)=> {
+	if(req.session.loggedin){
+        res.render('perfil-admin', {
+            login: true,
+            name: req.session.name,
+            email: req.session.email
+        });
+    }else{
+        res.render('404', {
+            login: false
+        })
+    }
+}
+
+export const controlerManifiesto = (req, res)=> {
+	if(req.session.loggedin){
+        res.render('manifiesto', {
+            login: true,
+            name: req.session.name
+        });
+    }else{
+        res.render('404', {
+            login: false
+        })
+    }
+}
+
+// CERRAR SESIÓN DEL MODULO ADMINISTRADOR
 export const cerraSesion = (req, res)=> {
 	req.session.destroy(()=>{
         res.redirect('/')

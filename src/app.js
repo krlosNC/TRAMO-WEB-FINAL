@@ -2,7 +2,9 @@
 import express from 'express';
 import { fileURLToPath } from 'url';
 import path from 'path';
-import adminRoutes from './routes/login.routes.js'
+import landingRoutes from './routes/landing.routes.js'
+import loginRoutes from './routes/login.routes.js'
+import adminRoutes from './routes/admin.routes.js'
 
 
 const app = express();
@@ -32,7 +34,17 @@ app.use(session({
 }));
 
 /*=========================================*/
-// PAGINA PRINCIPAL Y LOGIN EN MODO ADMINISTRADOR
-app.use(adminRoutes)
+// PAGINA DE ATERRIZAJE LANDING PAGE VISTAS
+app.use(landingRoutes);
+
+// PAGINA LOGIN PARA ENTRAR A MODULO ADMINISTRADOR
+app.use(loginRoutes);
+
+// MODULO ADMINISTRADOR VISTAS Y RENDERIZACIÓN DE ESTAS
+app.use(adminRoutes);
+
+app.use((req, res, next) => {
+    return res.render('404')
+})
 
 export default app;
